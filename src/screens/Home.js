@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Constants } from 'expo';
 
-import MenuButton from './../components/MenuButton';
+import MenuButton from './../components/elements/MenuButton';
 import MatchOptions from './../components/MatchOptions';
+import HalfModal from './../components/elements/HalfModal';
 
 export default class Home extends Component {
   render() {
     return (
       <View style={styles.page}>
         <MenuButton />
+
         <View style={styles.headerContainer}>
           <Text style={styles.textStyle}>START GAME</Text>
         </View>

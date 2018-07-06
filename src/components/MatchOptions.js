@@ -5,27 +5,34 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 
 export default class MatchOptions extends Component {
   _handleMatchPress(item) {
-    Actions.single_match({ match: item });
+    Actions.single_match_inn1({ match: item });
   }
 
   render() {
     return (
       <View>
         <FlatList
-          data={[{ key: 0, title: 'SINGLE MATCH' }, { key: 1, title: 'TOURNAMENT' }]}
+          data={[{ id: '0', title: 'SINGLE MATCH', img_url: require('./../../assets/single-match-icon.png')},
+                 { id: '1', title: 'TOURNAMENT', img_url: 
+                 require('./../../assets/tournamenticon.png')},
+                ]}
+          keyExtractor={ item => item.id }
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => this._handleMatchPress(item)}>
               <View style={styles.flexParent}>
-                <View style={styles.tile} />
+                <Image
+                  style={{ width: 200, height: 100, marginRight: 2 }}
+                  source={item.img_url}
+                />
                 <Text style={styles.matchTypeText}>{item.title}</Text>
               </View>
-              
             </TouchableOpacity>
           )}
         />
@@ -35,9 +42,8 @@ export default class MatchOptions extends Component {
 }
 
 const styles = StyleSheet.create({
-  tile: { width: 200, height: 100, backgroundColor: '#bbbbbb' },
   matchTypeText: {
-    marginTop: 10,
+    marginTop: 30,
     fontSize: 17,
     color: '#555555',
     fontWeight: 'bold',
